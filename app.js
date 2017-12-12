@@ -57,7 +57,29 @@ shell.on('message', function (message) {
 });});
 
   });
+app.post("/clustered", function(req, res){
+  var a= req.body.k;
+  var options = {
+  mode: 'text',
+  pythonPath: "C:/Users/hp/Anaconda3-2/python.exe",
+  pythonOptions: ['-u'],
+  scriptPath: './',
+  args: ["./data/"+req.body.filename, a]
+};
+var shell2 = new PythonShell('childProcess2.py', options);
+shell2.on('message', function (message) {
+var fs = require('fs');
+  var obj;
+  fs.readFile('output2', 'utf8', function (err, data) {
+  if (err) throw err;
+  obj = JSON.parse(data);
 
+
+res.render("finalresult", {ob:obj});
+});
+
+});
+});
 
 app.listen(3000, "localhost", function(err){
   console.log("Server on duty, Mallady!");
