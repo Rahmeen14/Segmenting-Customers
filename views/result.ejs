@@ -1,0 +1,12 @@
+<div class="container">
+<h1><%=obj.name%></h1>
+ <div>
+ 	<img style="height: 300px; width: 300px; " src="<%=obj.pic%>">
+ </div>
+ </div>
+<form action="/clustered" method="POST">
+  First name:<br>
+  <input type="text" name="k" required=""/><br>
+  <input type="text" name="filename" value="<%=filename%>">
+  <input type="submit" value="submit"><br>
+ </form>
